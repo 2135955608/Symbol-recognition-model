@@ -1,0 +1,55 @@
+﻿# 成产 chi_sim 的 train集
+convert_imageset --shuffle --gray --resize_height=64 --resize_width=64  C:\myWorkspace\Pycharm\deepLearning_OCR-master\caffe_dataset\chi_sim\  C:\myWorkspace\Pycharm\deepLearning_OCR-master\caffe_dataset\chi_sim\train.txt  C:\myWorkspace\Pycharm\deepLearning_OCR-master\caffe_dataset\chi_sim\fn_train_lmdb
+
+# 成产 chi_sim 的 test集
+convert_imageset --shuffle --gray --resize_height=64 --resize_width=64  C:\myWorkspace\Pycharm\deepLearning_OCR-master\caffe_dataset\chi_sim\  C:\myWorkspace\Pycharm\deepLearning_OCR-master\caffe_dataset\chi_sim\test.txt  C:\myWorkspace\Pycharm\deepLearning_OCR-master\caffe_dataset\chi_sim\fn_test_lmdb
+
+# 训练 chi_sim 模型
+I:\caffemodel\caffetool\caffetools\caffe-master\Build\x64\Release\caffe train --solver=I:\caffemodel\caffe_dataset\chi_sim\lenet_solver.prototxt
+
+
+
+
+
+
+# 成产 chi_tra 的 train集
+convert_imageset --shuffle --gray --resize_height=30 --resize_width=30 E:\WorkSpace\Jupyter\DeepLearning\deepLearning_OCR-master\deepLearning_OCR-master\caffe_dataset\chi_tra\ E:\WorkSpace\Jupyter\DeepLearning\deepLearning_OCR-master\deepLearning_OCR-master\caffe_dataset\chi_tra\train.txt E:\WorkSpace\Jupyter\DeepLearning\deepLearning_OCR-master\deepLearning_OCR-master\caffe_dataset\chi_tra\fn_train_lmdb
+
+# 成产 chi_tra 的 test集
+convert_imageset --shuffle --gray --resize_height=30 --resize_width=30 E:\WorkSpace\Jupyter\DeepLearning\deepLearning_OCR-master\deepLearning_OCR-master\caffe_dataset\chi_tra\ E:\WorkSpace\Jupyter\DeepLearning\deepLearning_OCR-master\deepLearning_OCR-master\caffe_dataset\chi_tra\test.txt E:\WorkSpace\Jupyter\DeepLearning\deepLearning_OCR-master\deepLearning_OCR-master\caffe_dataset\chi_tra\fn_test_lmdb
+
+# 训练 chi_tra 模型
+E:\WorkSpace\Jupyter\DeepLearning\deepLearning_OCR-master\caffe\caffe-master\Build\x64\Release\caffe train --solver=E:\WorkSpace\Jupyter\DeepLearning\deepLearning_OCR-master\deepLearning_OCR-master\caffe_dataset\chi_tra\lenet_solver.prototxt
+
+
+
+
+
+# 成产 digits 的 train集
+convert_imageset --shuffle --gray --resize_height=30 --resize_width=30 E:\WorkSpace\Jupyter\DeepLearning\deepLearning_OCR-master\deepLearning_OCR-master\caffe_dataset\digits\ E:\WorkSpace\Jupyter\DeepLearning\deepLearning_OCR-master\deepLearning_OCR-master\caffe_dataset\digits\train.txt E:\WorkSpace\Jupyter\DeepLearning\deepLearning_OCR-master\deepLearning_OCR-master\caffe_dataset\digits\fn_train_lmdb
+
+# 成产 digits 的 test集
+convert_imageset --shuffle --gray --resize_height=30 --resize_width=30 E:\WorkSpace\Jupyter\DeepLearning\deepLearning_OCR-master\deepLearning_OCR-master\caffe_dataset\digits\ E:\WorkSpace\Jupyter\DeepLearning\deepLearning_OCR-master\deepLearning_OCR-master\caffe_dataset\digits\test.txt E:\WorkSpace\Jupyter\DeepLearning\deepLearning_OCR-master\deepLearning_OCR-master\caffe_dataset\digits\fn_test_lmdb
+
+# 训练 digits 模型
+E:\WorkSpace\Jupyter\DeepLearning\deepLearning_OCR-master\caffe\caffe-master\Build\x64\Release\caffe train --solver=E:\WorkSpace\Jupyter\DeepLearning\deepLearning_OCR-master\deepLearning_OCR-master\caffe_dataset\digits\lenet_solver.prototxt
+
+
+
+
+
+# 成产 eng 的 train集
+convert_imageset --shuffle --gray --resize_height=30 --resize_width=30 E:\WorkSpace\Jupyter\DeepLearning\deepLearning_OCR-master\deepLearning_OCR-master\caffe_dataset\eng\ E:\WorkSpace\Jupyter\DeepLearning\deepLearning_OCR-master\deepLearning_OCR-master\caffe_dataset\eng\train.txt E:\WorkSpace\Jupyter\DeepLearning\deepLearning_OCR-master\deepLearning_OCR-master\caffe_dataset\eng\fn_train_lmdb
+
+# 成产 eng 的 test集
+convert_imageset --shuffle --gray --resize_height=30 --resize_width=30 E:\WorkSpace\Jupyter\DeepLearning\deepLearning_OCR-master\deepLearning_OCR-master\caffe_dataset\eng\ E:\WorkSpace\Jupyter\DeepLearning\deepLearning_OCR-master\deepLearning_OCR-master\caffe_dataset\eng\test.txt E:\WorkSpace\Jupyter\DeepLearning\deepLearning_OCR-master\deepLearning_OCR-master\caffe_dataset\eng\fn_test_lmdb
+
+# 训练 eng 模型
+E:\WorkSpace\Jupyter\DeepLearning\deepLearning_OCR-master\caffe\caffe-master\Build\x64\Release\caffe train --solver=E:\WorkSpace\Jupyter\DeepLearning\deepLearning_OCR-master\deepLearning_OCR-master\caffe_dataset\eng\lenet_solver.prototxt
+
+
+C:\myWorkspace\caffe_tool\caffe-master\Build\x64\Release\classification.exe  deploy_lenet_train_test.prototxt  lenet_iter_25000.caffemodel  mean.binaryproto  y_tag.txt  test.jpg
+
+#二进制均值计算
+1,C:\myWorkspace\caffe_tool\caffe-master\Build\x64\Release\compute_image_mean.exe  C:\myWorkspace\Pycharm\deepLearning_OCR-master\caffe_dataset\chi_sim\fn_train_lmdb  C:\myWorkspace\Pycharm\deepLearning_OCR-master\caffe_dataset\chi_sim\mean.binaryproto
+2,python convert_mean.py mean.binaryproto mean.npy
